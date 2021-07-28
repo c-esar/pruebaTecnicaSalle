@@ -54,7 +54,7 @@ public class Controlador {
 	@GetMapping(value = "/search", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> informacionDiagonal(@RequestBody parametros param) {
 		try {
-			parametros solu = this.servicio.search(param);
+			parametros solu = this.servicio.searchDiagonal(param);
 			if (solu.getContains().equalsIgnoreCase("true")) {
 				String datos = "{"
                         + "\"searchword\": \"" + param.getSearchword() + "\","

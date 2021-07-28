@@ -90,24 +90,108 @@ public class Servicio {
 			for (int x = 0; x < matrix.length; x++) {
 				count = 0;
 				palabra = "";
-				for (int y = 0; y < matrix[x].length; y++) {
-					palabra += Character.toString(matrix[x+count][y+count]);
+				for (int y = 0; y < matrix[0].length; y++) {
+					if((x+count) < matrix.length) {
+						palabra += Character.toString(matrix[x+count][y]);	
+					}else {
+						break;
+					}					
 					count++;
 					if (count == param.getWord().length()) {
 						if (palabra.equalsIgnoreCase(param.getWord())) {
 							param.setStart_row(String.valueOf(x));
-							y = y - (param.getWord().length()-1);
+							y = y- (param.getWord().length()-1);
 							param.setStart_col(String.valueOf(y));
 							param.setContains("true");
 							return param;
 						} else {
-							count = 0;
+							y = y-(count-1);
 							palabra = "";
-							y = y - (param.getWord().length()-1);
+							count =0;
 						}
 					}
 				}					
 			}	
+			
+			for (int x = matrix.length-1; x > 0; x--) {
+				count = 0;
+				palabra = "";
+				for (int y = matrix[0].length -1; y > 0; y--) {
+					if((x-count) >= 0) {
+						palabra += Character.toString(matrix[x-count][y]);	
+					}else {
+						break;
+					}					
+					count++;
+					if (count == param.getWord().length()) {
+						if (palabra.equalsIgnoreCase(param.getWord())) {
+							param.setStart_row(String.valueOf(x));
+							y = y+ (count-1);
+							param.setStart_col(String.valueOf(y));
+							param.setContains("true");
+							return param;
+						} else {
+							y = y+(count-1);
+							palabra = "";
+							count =0;
+						}
+					}
+				}					
+			}	
+			
+			
+			for (int x = 0; x < matrix.length; x++) {
+				count = 0;
+				palabra = "";
+				for (int y = matrix[0].length -1; y > 0; y--) {
+					if((x+count) < matrix.length) {
+						palabra += Character.toString(matrix[x+count][y]);	
+					}else {
+						break;
+					}					
+					count++;
+					if (count == param.getWord().length()) {
+						if (palabra.equalsIgnoreCase(param.getWord())) {
+							param.setStart_row(String.valueOf(x));
+							y = y+ (count-1);
+							param.setStart_col(String.valueOf(y));
+							param.setContains("true");
+							return param;
+						} else {
+							y = y+(count-1);
+							palabra = "";
+							count =0;
+						}
+					}
+				}					
+			}	
+			
+			for (int x = matrix.length-1; x > 0; x--) {
+				count = 0;
+				palabra = "";
+				for (int y = 0; y < matrix[0].length; y++) {
+					if((x-count) >= 0) {
+						palabra += Character.toString(matrix[x-count][y]);	
+					}else {
+						break;
+					}					
+					count++;
+					if (count == param.getWord().length()) {
+						if (palabra.equalsIgnoreCase(param.getWord())) {
+							param.setStart_row(String.valueOf(x));
+							y = y- (count-1);
+							param.setStart_col(String.valueOf(y));
+							param.setContains("true");
+							return param;
+						} else {
+							y = y-(count-1);
+							palabra = "";
+							count =0;
+						}
+					}
+				}					
+			}	
+			
 		}
 		param.setContains("false");
 		return param;
